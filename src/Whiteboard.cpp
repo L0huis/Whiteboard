@@ -19,12 +19,16 @@ void Whiteboard::on_paint(wxPaintEvent& evt)
 	render(gdc);
 }
 
-void Whiteboard::on_mouse_moved(wxMouseEvent& event)
+void Whiteboard::on_mouse_moved(wxMouseEvent& evt)
 {
 	if (m_is_mouse_down)
 	{
-		m_splines.back().points.push_back(event.GetPosition());
-		Refresh();
+		auto position = evt.GetPosition();
+		if (m_splines.back().points.empty() || position != m_splines.back().points.back())
+		{
+			m_splines.back().points.push_back(position);
+			Refresh();
+		}
 	}
 }
 
@@ -40,18 +44,6 @@ void Whiteboard::on_mouse_up(wxMouseEvent& evt)
 {
 	m_is_mouse_down = false;
 	evt.Skip();
-}
-
-void Whiteboard::on_mouse_wheel(wxMouseEvent& evt)
-{
-}
-
-void Whiteboard::on_right_click(wxMouseEvent& evt)
-{
-}
-
-void Whiteboard::on_mouse_left_window(wxMouseEvent& evt)
-{
 }
 
 void Whiteboard::on_key_down(wxKeyEvent& evt)
@@ -117,9 +109,6 @@ EVT_PAINT(Whiteboard::on_paint)
 EVT_MOTION(Whiteboard::on_mouse_moved)
 EVT_LEFT_DOWN(Whiteboard::on_mouse_down)
 EVT_LEFT_UP(Whiteboard::on_mouse_up)
-EVT_RIGHT_DOWN(Whiteboard::on_right_click)
-EVT_MOUSEWHEEL(Whiteboard::on_mouse_wheel)
-EVT_LEAVE_WINDOW(Whiteboard::on_mouse_left_window)
 EVT_KEY_DOWN(Whiteboard::on_key_down)
 EVT_KEY_UP(Whiteboard::on_key_up)
 END_EVENT_TABLE()

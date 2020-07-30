@@ -32,9 +32,6 @@ public:
 	void on_mouse_moved(wxMouseEvent& evt);
 	void on_mouse_down(wxMouseEvent& evt);
 	void on_mouse_up(wxMouseEvent& evt);
-	void on_mouse_wheel(wxMouseEvent& evt);
-	void on_right_click(wxMouseEvent& evt);
-	void on_mouse_left_window(wxMouseEvent& evt);
 	void on_key_down(wxKeyEvent& evt);
 	void on_key_up(wxKeyEvent& evt);
 
