@@ -99,7 +99,7 @@ void Whiteboard::render(wxGCDC& gdc, bool draw_grid)
 		if (spline.points.size() > 2)
 		{
 			gdc.SetPen(wxPen(spline.colour, spline.size));
-			gdc.DrawSpline(spline.points.size(), spline.points.data());
+			gdc.DrawLines(spline.points.size(), spline.points.data());
 		}
 	}
 }
